@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --space-black: #030609;
+  --galaxy-navy: #080d1a;
+  --neon-cyan: #00F5FF;
+  --github-green: #39FF14;
+  --terminal-emerald: #00FFB3;
+  --cosmic-white: #EAFBFF;
+  --plasma-purple: #7B61FF;
+  --solar-amber: #FFB703;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%; min-height: 100%;
+  background: #030609;
+  color: rgba(234,251,255,0.9);
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+}
+
+#app { width: 100%; min-height: 100vh; }
+
+/* ── Dark cards — readable on dark bg ── */
+.dark-card {
+  background: rgba(5, 8, 16, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+}
+
+/* ── Glass (subtle) ── */
+.glass {
+  background: rgba(5, 8, 16, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+}
+.glass-card {
+  background: rgba(5, 8, 16, 0.82);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.glass-card:hover {
+  border-color: rgba(255,255,255,0.16);
+  transform: translateY(-3px);
+}
+
+/* ── Glow effects (use sparingly, on UI elements only) ── */
+.glow-cyan  { box-shadow: 0 0 12px rgba(0,245,255,0.35); }
+.glow-purple{ box-shadow: 0 0 12px rgba(123,97,255,0.35); }
+.glow-green { box-shadow: 0 0 12px rgba(57,255,20,0.35);  }
+.text-glow-cyan   { text-shadow: 0 0 12px rgba(0,245,255,0.5); }
+.text-glow-green  { text-shadow: 0 0 12px rgba(57,255,20,0.5); }
+.text-glow-purple { text-shadow: 0 0 12px rgba(123,97,255,0.5); }
+.text-glow-amber  { text-shadow: 0 0 12px rgba(255,183,3,0.5); }
+
+/* ── Neon button ── */
+.btn-neon {
+  position: relative; overflow: hidden;
+  border: 1px solid rgba(0,245,255,0.4);
+  background: rgba(0,245,255,0.05);
+  color: #00F5FF;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  font-family: 'Orbitron', monospace;
+}
+.btn-neon:hover {
+  border-color: rgba(0,245,255,0.7);
+  background: rgba(0,245,255,0.1);
+  box-shadow: 0 0 16px rgba(0,245,255,0.2);
+}
+.btn-purple { border-color: rgba(123,97,255,0.4); color: #7B61FF; background: rgba(123,97,255,0.05); }
+.btn-purple:hover { border-color: rgba(123,97,255,0.7); background: rgba(123,97,255,0.1); box-shadow: 0 0 16px rgba(123,97,255,0.2); }
+.btn-green  { border-color: rgba(57,255,20,0.4);  color: #39FF14; background: rgba(57,255,20,0.05);  }
+.btn-green:hover  { border-color: rgba(57,255,20,0.7);  background: rgba(57,255,20,0.1);  box-shadow: 0 0 16px rgba(57,255,20,0.2); }
+
+/* ── Gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #00F5FF 0%, #7B61FF 60%, #39FF14 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.gradient-text-2 {
+  background: linear-gradient(135deg, #FFB703 0%, #FF3366 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* ── XP bar ── */
+.xp-bar-fill {
+  background: linear-gradient(90deg, #00F5FF, #7B61FF, #39FF14);
+  background-size: 200% 100%;
+  animation: xp-flow 4s linear infinite;
+}
+@keyframes xp-flow { 0%{background-position:0% 0%} 100%{background-position:200% 0%} }
+
+/* ── Energy border ── */
+.energy-border { position: relative; border-radius: 12px; }
+.energy-border::after {
+  content: ''; position: absolute; inset: -1px; border-radius: 13px; z-index: -1;
+  background: linear-gradient(90deg, #00F5FF, #7B61FF, #39FF14, #00F5FF);
+  background-size: 400% 100%;
+  animation: border-flow 4s linear infinite; opacity: 0.5;
+}
+@keyframes border-flow { 0%{background-position:0% 0%} 100%{background-position:400% 0%} }
+
+/* ── Page transitions ── */
+.page-enter-active { animation: page-in  0.35s ease forwards; }
+.page-leave-active { animation: page-out 0.25s ease forwards; }
+@keyframes page-in  { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:none} }
+@keyframes page-out { from{opacity:1} to{opacity:0;transform:translateY(-8px)} }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,245,255,0.3); }
+
+/* ── Animations ── */
+@keyframes float      { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+@keyframes pulse-neon { 0%,100%{opacity:1} 50%{opacity:0.5} }
+@keyframes scanline   { 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
+@keyframes spin-planet{ from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+.animate-float      { animation: float 5s ease-in-out infinite; }
+.animate-pulse-neon { animation: pulse-neon 2.5s ease-in-out infinite; }
+.animate-spin-slow  { animation: spin-planet 10s linear infinite; }
+
+/* ── Holographic (subtle) ── */
+.holographic {
+  background: linear-gradient(45deg,rgba(0,245,255,0.04),rgba(123,97,255,0.04),rgba(57,255,20,0.04));
+  border: 1px solid rgba(0,245,255,0.15);
+}
+
+/* ── Font helpers ── */
+.font-orbitron { font-family: 'Orbitron', monospace; }
+.font-terminal { font-family: 'Share Tech Mono', monospace; }
+.font-space    { font-family: 'Space Grotesk', sans-serif; }
+
+/* ── Ensure text is always readable ── */
+h1,h2,h3 { position: relative; z-index: 1; }
+p, span, a { position: relative; }
